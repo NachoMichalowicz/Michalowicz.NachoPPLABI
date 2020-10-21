@@ -1,19 +1,25 @@
 #ifndef COLOR_H_INCLUDED
 #define COLOR_H_INCLUDED
 
-typedef struct
-{
+typedef struct{
+
     int id;
-    char nombre[20];
+    char nombreColor[20];
 
-}Color;
+}eColor;
 
-void altaColor(Color *ColorsList, int *size, Color ColorNuevo, int *id);
-int bajaColor(Color *ColorsList, int *size, int id);
-int modificarColor(Color *ColorsList, int size, Color ColorSwap, int id);
-int listarColor(Color *ColorsList, int size);
-int listarColor(Color *ColorsList, int size);
-int searchColorById(Color *ColorsList, int id, int size);
+void listarColores(eColor coloresList[5], int size);
+/** brief Lista los colores.
+* \param eColor coloresList Lista de colores.
+* \param int size Tamaño de dicha lista.
+*
+*/
 
+int obtenerColorIndex(int size, int id);
+/** brief Obtiene el index de un color por id.
+* \param int size Tamaño de la lista de colores.
+* \param int id Id de referencia.
+*\return int retorna e
+*/
 
 #endif // COLOR_H_INCLUDED

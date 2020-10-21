@@ -1,0 +1,82 @@
+# depslib dependency file v1.0
+1603291158 source:c:\users\nacho\desktop\parciallabiparte2\bicicleta.c
+	<stdio.h>
+	<stdlib.h>
+	"bicicleta.h"
+	"color.h"
+	"tipo.h"
+	"trabajo.h"
+	"cliente.h"
+
+1603290976 c:\users\nacho\desktop\parciallabiparte2\bicicleta.h
+	"color.h"
+	"cliente.h"
+
+1603226462 source:c:\users\nacho\desktop\parciallabiparte2\color.c
+	<stdio.h>
+	<stdlib.h>
+	"color.h"
+
+1603226336 c:\users\nacho\desktop\parciallabiparte2\color.h
+
+1603244616 source:c:\users\nacho\desktop\parciallabiparte2\servicio.c
+	<stdio.h>
+	<stdlib.h>
+	"servicio.h"
+
+1603226336 c:\users\nacho\desktop\parciallabiparte2\servicio.h
+
+1603216012 source:c:\users\nacho\desktop\parciallabiparte2\tipo.c
+	<stdio.h>
+	<stdlib.h>
+	"tipo.h"
+
+1603226572 c:\users\nacho\desktop\parciallabiparte2\tipo.h
+
+1603291802 source:c:\users\nacho\desktop\parciallabiparte2\trabajo.c
+	<stdio.h>
+	<stdlib.h>
+	"trabajo.h"
+	"servicio.h"
+	"bicicleta.h"
+
+1603291493 c:\users\nacho\desktop\parciallabiparte2\trabajo.h
+	"servicio.h"
+	"trabajo.h"
+	"bicicleta.h"
+
+1603290384 source:c:\users\nacho\desktop\parciallabiparte2\validaciones.c
+	<stdio.h>
+	<string.h>
+	<stdlib.h>
+	<ctype.h>
+	"bicicleta.h"
+	"tipo.h"
+	"color.h"
+	"servicio.h"
+	"trabajo.h"
+	"cliente.h"
+
+1603289716 source:c:\users\nacho\desktop\parciallabiparte2\main.c
+	<stdio.h>
+	<stdlib.h>
+	"validaciones.h"
+	"tipo.h"
+	"bicicleta.h"
+	"color.h"
+	"servicio.h"
+	"trabajo.h"
+	"cliente.h"
+
+1603292137 c:\users\nacho\desktop\parciallabiparte2\validaciones.h
+	"bicicleta.h"
+	"tipo.h"
+	"color.h"
+	"trabajo.h"
+	"servicio.h"
+
+1603285389 source:c:\users\nacho\desktop\parciallabiparte2\cliente.c
+	"cliente.h"
+
+1603283842 c:\users\nacho\desktop\parciallabiparte2\cliente.h
+

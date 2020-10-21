@@ -1,20 +1,20 @@
 #ifndef SERVICIO_H_INCLUDED
 #define SERVICIO_H_INCLUDED
 
-typedef struct
-{
+typedef struct{
+
     int id;
-    char descripcion[26];
     int precio;
+    char descripcion[25];
 
-}Servicio;
+}eServicio;
 
-void altaServicio(Servicio *serviciosList, int *size, Servicio servicioNuevo, int *id);
-int bajaServicio(Servicio *serviciosList, int *size, int id);
-int modificarServicio(Servicio *serviciosList, int size, Servicio servicioSwap, int id);
-int listarServicios(Servicio *serviciosList, int size);
-void organizarServicios(Servicio *serviciosList, int size);
-int searchServiceById(Servicio *serviciosList, int id, int size);
+void listarServicios(eServicio serviciosList[4], int size);
+/** brief Lista los servicios.
+* \param eServicio serviciosList Lista de servicios.
+* \param int size Tamaño del array de servicios.
+*/
 
+int obtenerServicioIndex(eServicio serviciosList[4], int size, int id);
 
 #endif // SERVICIO_H_INCLUDED

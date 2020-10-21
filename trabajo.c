@@ -1,110 +1,199 @@
+#include <stdio.h>
+#include <stdlib.h>
+
 #include "trabajo.h"
+#include "servicio.h"
+#include "bicicleta.h"
 
-void altaTrabajo(Trabajo *TrabajosList, int *size, Trabajo TrabajoNuevo, int *id)
+
+void altaTrabajo(eTrabajo *trabajosList, eTrabajo nuevoTrabajo, int index);
+
+void listarTrabajos(eTrabajo trabajosList[100], int size);
+void listarTrabajosBici(eTrabajo trabajosList[100], int size, int id);
+void listarServiciosPorFecha(eTrabajo trabajosList[100], int size, eFecha fechaElegida, eServicio serviciosList[4], int sizeServicios);
+int sumaImportes(eTrabajo trabajosList[100], int sizeTrabajos, eServicio serviciosLista[4], int sizeServicio, int idBici);
+void mostrarBiciPorServicio(eTrabajo trabajosList[100], int sizeTrabajo, eBici bicisList[100], int sizeBicis, int idServicio, eCliente clientesList[5], int sizeClientes);
+
+
+void altaTrabajo(eTrabajo *trabajosList, eTrabajo nuevoTrabajo, int index)
 {
-    int newSize = *size +1;
-    TrabajosList[*size] = TrabajoNuevo;
-    TrabajosList[*size].id = *id;
-    *id = *id +1;
-
-    *size = newSize;
+    trabajosList[index] = nuevoTrabajo;
 }
 
-int bajaTrabajo(Trabajo *TrabajosList, int *size, int id)
+void listarTrabajos(eTrabajo trabajosList[100], int size)
 {
-    int index = searchTrabajoById(TrabajosList, id, *size);
-
-    if (index == -1)
-    {
-        return 0;
-    }
-    else
-    {
-        Trabajo TrabajoVacio;
-        TrabajosList[index] = TrabajoVacio;
-
-        for (int i = index+1; i < *size; i++)
-        {
-            Trabajo auxTrabajo;
-            auxTrabajo = TrabajosList[i-1];
-
-            TrabajosList[i-1] = TrabajosList[i];
-            TrabajosList[i] = auxTrabajo;
-        }
-
-        *size = *size -1;
-        }
-}
-
-int modificarTrabajo(Trabajo *TrabajosList, int size, Trabajo TrabajoSwap, int id)
-{
-    int index;
-    index = searchTrabajoById(TrabajosList, id, size);
-
-    if (index == -1)
-    {
-        return 0;
-    }
-    else
-    {
-        TrabajosList[index] = TrabajoSwap;
-    }
-}
-
-int listarTrabajo(Trabajo *TrabajosList, int size)
-{
+    system("cls");
     if (size > 0)
     {
-        printf("\n---TRABAJOS---\n\n");
-        organizarTrabajos(TrabajosList, size);
+        printf("------Listado de trabajos------\n");
         for (int i = 0; i < size; i++)
         {
-            Trabajo TrabajoActual;
-            TrabajoActual = TrabajosList[i];
+            eTrabajo trabajoActual;
+            trabajoActual = trabajosList[i];
 
-            printf("\nId: %d", TrabajoActual.id);
-            printf("\nId de bicicleta: %d", TrabajoActual.idBicicleta);
-            printf("\nId del servicio: %d", TrabajoActual.idServicio);
-            printf("\nFecha del trabajo: %d/%d/%d", TrabajoActual.fechaTrabajo.dia, TrabajoActual.fechaTrabajo.mes, TrabajoActual.fechaTrabajo.anio);
+            printf("\n| Id de trabajo: %d", trabajoActual.id);
+            printf("\n| Fecha del trabajo: %d/%d/%d", trabajoActual.fecha.dia, trabajoActual.fecha.mes, trabajoActual.fecha.anio);
+            printf("\n| Id de servicio del trabajo: %d", trabajoActual.idServicio);
+            printf("\n| Id de bicicleta del trabajo: %d", trabajoActual.idBicicleta);
+            printf("\n----------------------------");
+            printf("\n");
         }
     }
     else
     {
-        return -1;
+        printf("\nNo es posible listar trabajos cuando no hay ninguno!");
     }
-
 }
 
-void organizarTrabajos(Trabajo *TrabajosList, int size)
+void listarTrabajosBici(eTrabajo trabajosList[100], int size, int id)
 {
-    for (int i = 0; i < size; i++)
+    int cantidadTrabajos = 0;
+    system("cls");
+    if (size > 0)
     {
-        for (int j = i; j < size; j++)
+        printf("------Listado de trabajos------\n");
+        for (int i = 0; i < size; i++)
         {
-            if (TrabajosList[i].id < TrabajosList[j].id)
+            eTrabajo trabajoActual;
+            trabajoActual = trabajosList[i];
+            if (trabajoActual.idBicicleta == id)
             {
-                Trabajo TrabajoAux;
-                TrabajoAux = TrabajosList[i];
+                printf("\n| Id de trabajo: %d", trabajoActual.id);
+                printf("\n| Fecha del trabajo: %d/%d/%d", trabajoActual.fecha.dia, trabajoActual.fecha.mes, trabajoActual.fecha.anio);
+                printf("\n| Id de servicio del trabajo: %d", trabajoActual.idServicio);
+                printf("\n| Id de bicicleta del trabajo: %d", trabajoActual.idBicicleta);
+                printf("\n----------------------------");
+                printf("\n");
+                cantidadTrabajos++;
+            }
 
-                TrabajosList[i] = TrabajosList[j];
-                TrabajosList[j] = TrabajoAux;
+        }
+
+        if (cantidadTrabajos == 0)
+        {
+            printf("\n ----------------------------------");
+            printf("\nNo hay trabajos para esa bicicleta.");
+        }
+    }
+    else
+    {
+        printf("\nNo es posible listar bicicletas por trabajo cuando no hay ninguno!");
+    }
+}
+
+void listarServiciosPorFecha(eTrabajo trabajosList[100], int size, eFecha fechaElegida, eServicio serviciosList[4], int sizeServicios)
+{
+    int cantidadTrabajos = 0;
+    system("cls");
+    if (size > 0)
+    {
+        printf("------Listado de servicios por fecha------\n");
+        for (int i = 0; i < size; i++)
+        {
+            eTrabajo trabajoActual;
+            trabajoActual = trabajosList[i];
+            eFecha fechaActual;
+            fechaActual = trabajoActual.fecha;
+
+            if (fechaActual.dia == fechaElegida.dia && fechaActual.mes == fechaElegida.mes && fechaActual.anio == fechaElegida.anio)
+            {
+                int index;
+                eServicio servicioActual;
+
+                index = trabajoActual.idServicio;
+                index = obtenerServicioIndex(serviciosList, sizeServicios, index);
+                servicioActual = serviciosList[index];
+
+                printf("\n| Id de servicio: %d", servicioActual.id);
+                printf("\n| Descripcion de servicio: %s", servicioActual.descripcion);
+                printf("\n| Precio de servicio: %d$", servicioActual.precio);
+                printf("\n ------------------");
+                printf("\n");
+                cantidadTrabajos++;
+            }
+
+        }
+
+        if (cantidadTrabajos == 0)
+        {
+            printf("\n ----------------------------------");
+            printf("\nNo hay servicios para esa fecha.");
+        }
+    }
+    else
+    {
+        printf("\nNo es posible listar servicios cuando no hay ningun trabajo!");
+    }
+}
+
+int sumaImportes(eTrabajo trabajosList[100], int sizeTrabajos, eServicio serviciosLista[4], int sizeServicio, int idBici)
+{
+    int acumuladorImportes = 0;
+
+    if (sizeTrabajos > 0)
+    {
+        for (int i = 0; i < sizeTrabajos; i++)
+        {
+            eTrabajo trabajoActual;
+            trabajoActual = trabajosList[i];
+
+            if (trabajoActual.idBicicleta == idBici)
+            {
+                int servicioActual = trabajoActual.idServicio;
+                int indexServicio = obtenerIndexPorIdServicio(serviciosLista, sizeServicio, servicioActual);
+                int monto = serviciosLista[indexServicio].precio;
+
+                acumuladorImportes = acumuladorImportes + monto;
             }
         }
+        return acumuladorImportes;
+    }
+    else
+    {
+        printf("\nNo es posible sumar el importe de los trabajos cuando no hay ninguno!");
+        return 0;
     }
 }
 
-int searchTrabajoById(Trabajo *TrabajosList, int id, int size)
+void mostrarBiciPorServicio(eTrabajo trabajosList[100], int sizeTrabajo, eBici bicisList[100], int sizeBicis, int idServicio, eCliente clientesList[5], int sizeClientes)
 {
-    for (int i = 0; i < size; i++)
-    {
-        Trabajo TrabajoActual;
-        TrabajoActual = TrabajosList[i];
+    system("cls");
+    printf("\n----Bicicletas a las que se les realizo ese servicio----");
+    int cantidadBicis = 0;
 
-        if (TrabajoActual.id == id)
+    for (int i = 0; i < sizeTrabajo; i++)
+    {
+        eTrabajo trabajoActual;
+        trabajoActual = trabajosList[i];
+
+        if (trabajoActual.idServicio == idServicio)
         {
-            return i;
+            int index;
+            int biciId;
+            biciId = trabajoActual.idBicicleta;
+
+            index = obtenerIndexBiciPorId(bicisList, biciId, sizeBicis);
+            eBici biciActual;
+            biciActual = bicisList[index];
+
+            int indexClienteActual = obtenerIndexClientePorId(clientesList, biciActual.idCliente, sizeClientes);
+            eCliente clienteActual;
+            clienteActual = clientesList[indexClienteActual];
+
+            printf("\n------------------------");
+            printf("\n| Id de bicicleta: %d", biciActual.id);
+            printf("\n| Id de tipo: %d", biciActual.idTipo);
+            printf("\n| Id de color: %d", biciActual.idColor);
+            printf("\n| Rodado: %.2f", biciActual.rodado);
+            printf("\n| Marca: %s", biciActual.marca);
+            printf("\n| Nombre del cliente: %s", clienteActual.nombre);
+            printf("\n ------------------");
+            printf("\n");
+            cantidadBicis++;
         }
     }
-    printf("\nNo existe Trabajo con dicha ID");
-    return -1;
+    if (cantidadBicis == 0)
+    {
+        printf("\nNo hay bicicletas a las que se les haya hecho dicho servicio.");
+    }
 }

@@ -1,0 +1,64 @@
+# depslib dependency file v1.0
+1603237223 source:c:\users\nacho\desktop\parciallabi\main.c
+	<stdio.h>
+	<stdlib.h>
+	"validaciones.h"
+	"tipo.h"
+	"bicicleta.h"
+	"color.h"
+	"servicio.h"
+	"trabajo.h"
+
+1603237614 c:\users\nacho\desktop\parciallabi\validaciones.h
+	"bicicleta.h"
+	"tipo.h"
+	"color.h"
+	"trabajo.h"
+	"servicio.h"
+
+1603226158 c:\users\nacho\desktop\parciallabi\bicicleta.h
+
+1603237587 source:c:\users\nacho\desktop\parciallabi\validaciones.c
+	<stdio.h>
+	<string.h>
+	<stdlib.h>
+	<ctype.h>
+	"bicicleta.h"
+	"tipo.h"
+	"color.h"
+	"servicio.h"
+	"trabajo.h"
+
+1603225037 source:c:\users\nacho\desktop\parciallabi\bicicleta.c
+	<stdio.h>
+	<stdlib.h>
+	"bicicleta.h"
+
+1603216012 source:c:\users\nacho\desktop\parciallabi\tipo.c
+	<stdio.h>
+	<stdlib.h>
+	"tipo.h"
+
+1603226572 c:\users\nacho\desktop\parciallabi\tipo.h
+
+1603226462 source:c:\users\nacho\desktop\parciallabi\color.c
+	<stdio.h>
+	<stdlib.h>
+	"color.h"
+
+1603226336 c:\users\nacho\desktop\parciallabi\color.h
+
+1603226336 source:c:\users\nacho\desktop\parciallabi\servicio.c
+	<stdio.h>
+	<stdlib.h>
+	"servicio.h"
+
+1603226336 c:\users\nacho\desktop\parciallabi\servicio.h
+
+1603225903 source:c:\users\nacho\desktop\parciallabi\trabajo.c
+	<stdio.h>
+	<stdlib.h>
+	"trabajo.h"
+
+1603226005 c:\users\nacho\desktop\parciallabi\trabajo.h
+
